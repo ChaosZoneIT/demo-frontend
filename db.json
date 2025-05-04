@@ -1,0 +1,25 @@
+{
+  "chair": [
+    {
+      "id": "1",
+      "typ": "standard",
+      "name": "Leżak Standardowy",
+      "price": 25,
+      "available": 20
+    },
+    {
+      "id": "2",
+      "typ": "premium",
+      "name": "Leżak Premium",
+      "price": 40,
+      "available": 12
+    },
+    {
+      "id": "3",
+      "typ": "vip",
+      "name": "Leżak Ekskluzywny",
+      "price": 50,
+      "available": 6
+    }
+  ]
+}

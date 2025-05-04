@@ -1,0 +1,9 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "eslint.workingDirectories": ["./"],
+    "files.associations": {
+      "*.spec.ts": "typescript"
+    }
+  }
+  

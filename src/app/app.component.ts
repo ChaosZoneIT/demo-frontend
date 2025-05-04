@@ -1,12 +1,16 @@
+// frontend/src/app/app.component.ts
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component'; // 🔥 Poprawna ścieżka
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,   // <-- dodaj tę linię
+  imports: [RouterModule, NavbarComponent, ReactiveFormsModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Wypożyczalnia Leżaków';
 }

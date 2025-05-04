@@ -1,0 +1,72 @@
+<div class="reservation-container">
+    <header class="reservation-header">
+      <h1>Rezerwacja leżaków</h1>
+      <p>Wypełnij poniższy formularz, aby zarezerwować leżaki na wybrany termin</p>
+    </header>
+  
+    <div class="reservation-content">
+      <div class="chairs-info">
+        <h2>Dostępne rodzaje leżaków</h2>
+        
+        <div class="chairs-grid">
+          <div class="chair-card" *ngFor="let chair of chairTypes">
+            <div class="chair-image">
+              <img src="images/chair-{{chair.id}}.jpg" alt="{{chair.name}}">
+            </div>
+            <div class="chair-details">
+              <h3>{{chair.name}}</h3>
+              <p class="chair-price">{{chair.price}} zł / dzień</p>
+              <p class="chair-description">
+                {{chair.id == 1 ? 'Klasyczny, wygodny leżak plażowy z regulowanym oparciem.Minimalizm i komfort – idealny wybór na słoneczne dni dla ceniących prostotę i wygodę.' :
+                  chair.id == 2 ? 'Stylowy leżak z regulowanym oparciem i daszkiem przeciwsłonecznym. Zadbaj o cień i komfort – idealny balans między funkcjonalnością a relaksem.' :
+                  'Najwyższy standard wypoczynku – leżak z daszkiem i praktycznym uchwytem na napoje. Wygoda, cień i chłodny napój zawsze pod ręką – wszystko, czego potrzebujesz, by odpocząć na poziomie premium+.'}}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        Tabela dostępnych leżaków
+        <table class="chairs-table">
+          <thead>
+            <tr>
+              <th>Model leżaka</th>
+              <th>Cena za dzień</th>
+              <th>Dostępne</th>
+              <th>Wybierz ilość</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let chair of chairTypes; let i = index" [attr.data-cy]="'chair-row-' + i">
+              <td>{{ chair.name }}</td>
+              <td [attr.data-cy]="'chair-price-' + i">{{ chair.price }} zł</td>
+              <td><span [attr.data-cy]="'chair-available-' + i">{{ chair.available }}</span> sztuk</td>
+              <td>
+                <input
+                  type="number"
+                  [(ngModel)]="chair.selected"
+                  min="0"
+                  [max]="chair.available"
+                  [attr.data-cy]="'chair-input-' + i"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <!-- Podsumowanie kosztu rezerwacji -->
+        <div class="reservation-summary">
+          <p>Łączny koszt rezerwacji: <strong data-cy="reservation-total">{{ totalPrice }} zł</strong></p>
+        </div>
+  
+        <!-- Przycisk rezerwacji -->
+        <div class="form-actions">
+          <button (click)="onReserve()" class="submit-button" data-cy="submit-reservation">Zarezerwuj</button>
+        </div>
+
+
+
+      </div>
+
+    </div>
+</div>
+  

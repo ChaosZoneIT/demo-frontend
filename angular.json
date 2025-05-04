@@ -51,6 +51,38 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "local-dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local-dev.ts"
+                }
+              ]
+            },
+            "nginx-proxy": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.nginx-proxy.ts"
+                }
+              ]
+            },
+            "dynamic-config": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dynamic-config.ts"
+                }
+              ]
+            },
+            "e2e": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.e2e.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -63,6 +95,15 @@
             },
             "development": {
               "buildTarget": "frontend:build:development"
+            },
+            "local-dev": {
+              "buildTarget": "frontend:build:local-dev"
+            },
+            "nginx-proxy": {
+              "buildTarget": "frontend:build:nginx-proxy"
+            },
+            "dynamic-config": {
+              "buildTarget": "frontend:build:dynamic-config"
             }
           },
           "defaultConfiguration": "development"
@@ -71,24 +112,11 @@
           "builder": "@angular-devkit/build-angular:extract-i18n"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
-          }
+          "builder": "@angular-builders/jest:run",
+            "options": {
+              "jestConfig": ["jest.config.js"],
+              "tsConfig": "tsconfig.spec.json"
+            }
         }
       }
     }

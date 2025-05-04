@@ -1,59 +1,98 @@
-# Frontend
+# [DEMO] Aplikacja do rezerwacja leżaków
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
+Aplikacja frontendowa zbudowana w oparciu o Angular 19.
 
-## Development server
+## 🔧 Wymagania
 
-To start a local development server, run:
+- Node.js >= 18 (zalecane LTS)
+- NPM >= 9
+- Angular CLI (`npm install -g @angular/cli`)
+- (Opcjonalnie) Docker i Docker Compose
 
-```bash
-ng serve
-```
+## 🚀 Uruchomienie lokalne
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Zainstaluj zależności:
 
-## Code scaffolding
+   ```bash
+   npm install
+   ```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+2. Uruchom aplikację (środowisko developerskie):
 
-```bash
-ng generate component component-name
-```
+   ```bash
+   npm run start:local-dev
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. (Opcjonalnie) Uruchom mockowy serwer JSON:
 
-```bash
-ng generate --help
-```
+   ```bash
+   npm run start:json-server
+   ```
 
-## Building
+## 🔧 Lokalny build aplikacji i serwowanie statyczne
 
-To build the project run:
+Ten rozdział opisuje, jak lokalnie zbudować aplikację Angular i uruchomić ją jako statyczny serwis — np. do testów z zewnętrznym config.json, bez konieczności ponownego budowania po każdej zmianie.
 
-```bash
-ng build
-```
+### 1 Budowanie aplikacji
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+   ```bash
+   npm run build:static
+   ```
 
-## Running unit tests
+   > Komenda ta wykonuje build z konfiguracją local-dev, tworząc statyczne pliki w katalogu dist/frontend.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 2. Serwowanie aplikacji
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Aby uruchomić lokalny serwer HTTP na porcie 4200 (lub innym), użyj:
 
 ```bash
-ng e2e
+npm run serve:static
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+To uruchamia prosty serwer statyczny (http-server) z katalogu dist/frontend/browser.
 
-## Additional Resources
+### 3. Restart po zmianie config.json
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Jeśli zmienisz plik config.json ładowany przez aplikację (np. assets/config/config.json), wystarczy:
+
+- ponownie uruchomić serwer (Ctrl+C, potem npm run serve:static),
+- nie trzeba wykonywać ng build, o ile sam build nie zależy od tego pliku.
+
+## ✅ Testowanie
+
+- jednostkowe:
+
+```bash
+npm run test:unit
+```
+
+- integracyjne:
+
+```bash
+npm run test:integration
+```
+
+- E2E (Cypress) z mock backend:
+
+```bash
+npm run test:e2e
+```
+
+## 📦 Skrypty NPM
+
+| Skrypt              | Opis                                   |
+| ------------------- | -------------------------------------- |
+| `start`             | Domyślne uruchomienie Angulara         |
+| `start:local-dev`   | Uruchomienie z konfiguracją `localdev` |
+| `start:json-server` | Mockowy backend (JSON Server)          |
+| `build`             | Budowanie aplikacji                    |
+| `test`              | Uruchomienie testów przez `jest`       |
+| `lint`              | Sprawdzenie lintingu                   |
+
+
+## 📁 Struktura projektu
+
+    Pełna dokumentacja folderów i architektury pojawi się w kolejnych commitach.
+
+## TODO
+opis docker-compose

@@ -1,0 +1,28 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_CONFIG: nginx-proxy
+    image: nginx:alpine
+    container_name: nginx-frontend
+    depends_on:
+      - json-server
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    networks:
+      - frontend-net
+
+  json-server:
+    image: clue/json-server
+    volumes:
+      - ./db.json:/data/db.json
+    networks:
+      - frontend-net
+
+networks:
+  frontend-net:
+    driver: bridge

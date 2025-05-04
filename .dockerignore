@@ -1,0 +1,52 @@
+# Ignorujemy foldery i pliki związane z edytorem
+.vscode/
+.idea/
+*.swp
+
+# Ignorujemy pliki wersjonowania i konfiguracji GIT
+.git/
+.gitignore
+.gitattributes
+
+# Ignorujemy pliki konfiguracyjne Docker Compose
+docker-compose.yml
+docker-compose.*.yml
+
+# Ignorujemy pliki README
+README.md
+
+# Ignorujemy foldery
+dynamic-config/
+doc/
+public/images/old/
+
+# Ignorujemy testy i inne pliki związane z testowaniem
+cypress/
+
+# Ignorujemy zależności zainstalowane przez Angular (będą instalowane podczas budowania obrazu)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignorujemy pliki tymczasowe
+*.log
+*.tmp
+
+# Ignorujemy pliki generowane przez Angular CLI
+/dist/
+/tmp/
+/out-tsc/
+
+# Ignorujemy pliki buildowe i cache
+*.tsbuildinfo
+
+# Ignorujemy inne pliki i foldery, które nie są potrzebne w obrazie produkcyjnym
+*.md
+*.json
+
+# Ale nie ignorujemy package.json i package-lock.json
+!angular.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!tsconfig.app.json
