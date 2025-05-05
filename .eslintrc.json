@@ -23,6 +23,17 @@
         "extends": ["plugin:@angular-eslint/template/recommended"],
         "rules": {}
       }
-    ]
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:security/recommended"
+    ],
+    "plugins": [
+      "security"
+    ],
+    "rules": {
+      "security/detect-non-literal-regexp": "error",
+      "security/detect-object-injection": "warn"
+    }
   }
   
