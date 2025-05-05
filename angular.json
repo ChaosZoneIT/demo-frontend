@@ -113,12 +113,28 @@
         },
         "test": {
           "builder": "@angular-builders/jest:run",
-            "options": {
-              "jestConfig": ["jest.config.js"],
-              "tsConfig": "tsconfig.spec.json"
-            }
+          "options": {
+            "jestConfig": [
+              "jest.config.js"
+            ],
+            "tsConfig": "tsconfig.spec.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }

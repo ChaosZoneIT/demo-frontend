@@ -14,7 +14,9 @@
     "test:integration": "jest --testNamePattern='^\\[integration\\]'",
     "test:e2e": "cypress run",
     "test:e2e:local": "cypress open",
-    "lint": "ng lint"
+    "lint": "eslint . --ext .ts,.html",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit"
   },
   "private": true,
   "dependencies": {
@@ -33,15 +35,26 @@
   "devDependencies": {
     "@angular-builders/jest": "^19.0.1",
     "@angular-devkit/build-angular": "^19.2.9",
+    "@angular-eslint/eslint-plugin": "^19.3.0",
+    "@angular-eslint/eslint-plugin-template": "^19.3.0",
+    "@angular-eslint/template-parser": "^19.3.0",
     "@angular/cli": "^19.2.9",
     "@angular/compiler-cli": "^19.2.0",
     "@types/cypress": "^0.1.6",
     "@types/jest": "^29.5.14",
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0",
+    "angular-eslint": "19.3.0",
     "cypress": "^14.3.2",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.4.0",
     "http-server": "^14.1.1",
     "jest": "^29.7.0",
     "json-server": "^1.0.0-beta.3",
+    "prettier": "^3.5.3",
     "ts-jest": "^29.3.2",
-    "typescript": "~5.7.2"
+    "typescript": "~5.7.2",
+    "typescript-eslint": "8.27.0"
   }
 }
