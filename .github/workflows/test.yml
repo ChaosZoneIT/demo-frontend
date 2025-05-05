@@ -1,4 +1,4 @@
-name: Run Unit and Integration Tests
+name: Run Unit and Integration Tests with Coverage
 
 on:
   push:
@@ -27,6 +27,12 @@ jobs:
         run: npm run test:unit
         continue-on-error: true
 
+      - name: Upload coverage report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: ./coverage/lcov-report/index.html
+
   integration-test:
     name: Run Integration Tests
     runs-on: ubuntu-latest
@@ -44,3 +50,9 @@ jobs:
       - name: Run integration tests
         run: npm run test:integration
         continue-on-error: true
+    
+      - name: Upload coverage report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: ./coverage/lcov-report/index.html
