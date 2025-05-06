@@ -47,7 +47,6 @@ jobs:
 
       - name: Run integration tests
         run: npm run test:integration
-        continue-on-error: true
     
       - name: Upload coverage report as artifact
         uses: actions/upload-artifact@v4
