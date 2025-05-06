@@ -1,4 +1,4 @@
-name: Run Unit and Integration Tests with Coverage
+name: z Run Unit and Integration Tests with Coverage
 
 on:
   workflow_call:

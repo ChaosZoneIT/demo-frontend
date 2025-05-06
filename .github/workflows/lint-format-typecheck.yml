@@ -1,4 +1,4 @@
-name: Lint, Format, Typecheck
+name: z Lint, Format, Typecheck
 
 on:
   workflow_call:
