@@ -1,26 +1,25 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Chair } from '../models/chair.model';
-import { ChairReservationRequest } from '../models/chair-reservation-request.model';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { RESERVATION_STRATEGY } from './reservation-strategy.token';
+import { ChairReservationRequest } from '../models/chair-reservation-request.model';
+import { Chair } from '../models/chair.model';
+import { AppConfigService } from './../core/app-config.service';
 import { ReservationStrategy } from './reservation-strategy.interface';
-import { AppConfigService } from './../core/app-config.service'; 
+import { RESERVATION_STRATEGY } from './reservation-strategy.token';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChairService {
   [x: string]: any;
 
   private apiUrl: string;
-  private chairPath = "/chair";
+  private chairPath = '/chair';
 
   constructor(
     private http: HttpClient,
     @Inject(RESERVATION_STRATEGY) private reservationStrategy: ReservationStrategy,
-    private configService: AppConfigService
+    private configService: AppConfigService,
   ) {
     this.apiUrl = this.configService.get('chairApiUrl');
   }

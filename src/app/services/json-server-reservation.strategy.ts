@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ReservationStrategy } from './reservation-strategy.interface';
-import { environment } from '../../environments/environment';
-import { Chair } from '../models/chair.model';
-import { ChairReservationRequest } from '../models/chair-reservation-request.model';
-import { forkJoin, Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { forkJoin, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { AppConfigService } from './../core/app-config.service'; 
+import { ChairReservationRequest } from '../models/chair-reservation-request.model';
+import { Chair } from '../models/chair.model';
+import { AppConfigService } from './../core/app-config.service';
+import { ReservationStrategy } from './reservation-strategy.interface';
 
 @Injectable({
   providedIn: 'root'
