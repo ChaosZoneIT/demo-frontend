@@ -3,7 +3,11 @@ name: CI for feature branches
 on:
   push:
     branches:
-        - '**'
+     - '**'
+#   push:
+#     branches-ignore:
+#       - main
+#       - 'release/**'
 
 jobs:
   static-code-analysis:

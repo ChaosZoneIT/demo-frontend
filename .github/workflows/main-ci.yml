@@ -1,0 +1,32 @@
+name: CI for main branch
+
+on:
+  push:
+    branches:
+     - '**'
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
+
+jobs:
+  static-code-analysis:
+    uses: ./.github/workflows/lint-format-typecheck.yml
+
+  tests:
+    uses: ./.github/workflows/test.yml
+    needs: static-code-analysis
+
+  security:
+    uses: ./.github/workflows/security.yml
+    needs: tests
+
+  build:
+    uses: ./.github/workflows/build.yml
+    needs: security
+
+  e2e-tests:
+    uses: ./.github/workflows/e2e.yml
+    needs: build
