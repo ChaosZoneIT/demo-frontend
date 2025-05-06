@@ -34,7 +34,7 @@ describe('[integration] ReservationComponent', () => {
     });
 
     // Mockowanie odpowiedzi HTTP
-    const req = httpMock.expectOne(`${service['apiUrl']}`);
+    const req = httpMock.expectOne(`${service['apiUrl']}/chair`);
     expect(req.request.method).toBe('GET');
     req.flush(mockChairs); // Zwracamy mockowane dane
   });
@@ -53,12 +53,12 @@ describe('[integration] ReservationComponent', () => {
     });
   
     // Pierwsze zapytanie GET
-    const getReq = httpMock.expectOne(`${service['apiUrl']}/${chairFromServer.id}`);
+    const getReq = httpMock.expectOne(`${service['apiUrl']}/chair/${chairFromServer.id}`);
     expect(getReq.request.method).toBe('GET');
     getReq.flush(chairFromServer);
   
     // Następnie PATCH z nową dostępnością
-    const patchReq = httpMock.expectOne(`${service['apiUrl']}/${chairFromServer.id}`);
+    const patchReq = httpMock.expectOne(`${service['apiUrl']}/chair/${chairFromServer.id}`);
     expect(patchReq.request.method).toBe('PATCH');
     expect(patchReq.request.body).toEqual({ available: 5 });
     patchReq.flush(updatedChair);
@@ -86,11 +86,11 @@ describe('[integration] ReservationComponent', () => {
     });
   
     reservationRequest.forEach((res, index) => {
-      const getReq = httpMock.expectOne(`${service['apiUrl']}/${res.id}`);
+      const getReq = httpMock.expectOne(`${service['apiUrl']}/chair/${res.id}`);
       expect(getReq.request.method).toBe('GET');
       getReq.flush(chairsFromServer[index]);
   
-      const patchReq = httpMock.expectOne(`${service['apiUrl']}/${res.id}`);
+      const patchReq = httpMock.expectOne(`${service['apiUrl']}/chair/${res.id}`);
       expect(patchReq.request.method).toBe('PATCH');
       expect(patchReq.request.body).toEqual({ available: expectedUpdatedChairs[index].available });
       patchReq.flush(expectedUpdatedChairs[index]);
