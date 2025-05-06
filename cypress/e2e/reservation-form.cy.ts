@@ -2,8 +2,7 @@ import { Chair } from "@app/models/chair.model";
 
 describe('Reservation calculation', () => {
 
-  const chairApiUrl = Cypress.env('chairApiUrl');
-
+  const chairApiUrl = Cypress.env('chairApiUrl')+'/chair';
   const standardChair: Chair = {id: 1, typ: 'standard', name: 'Leżak Standardowy', price: 25, available: 10};
   const premiumChair: Chair = {id: 2, typ: 'premium', name: 'Leżak Premium', price: 40, available: 6};
   const vipChair: Chair = {id: 3, typ: 'vip', name: 'Leżak Ekskluzywny', price: 50, available: 5};
@@ -20,7 +19,7 @@ describe('Reservation calculation', () => {
   let chairsResponse: Chair[];
 
   beforeEach(() => {
-    chairsResponse = chairsResponseDefault.map(chair => ({ ...chair }));;
+    chairsResponse = chairsResponseDefault.map(chair => ({ ...chair }));
     updatedChairsResponse = JSON.parse(JSON.stringify(updatedChairsResponseDefault));
     cy.intercept('GET', chairApiUrl, (req) => {
       req.reply({
@@ -28,6 +27,16 @@ describe('Reservation calculation', () => {
         body: chairsResponse  // <- wtedy za każdym razem bierze aktualną wartość
       });
     }).as('mockedChairs');
+
+    cy.intercept('GET', new RegExp(`^${chairApiUrl}/\\d+$`), (req) => {
+      const id = req.url.split('/').pop();
+      if (id) {
+        req.reply({
+          statusCode: 200,
+          body: chairsResponse.find(chair => chair.id === parseInt(id, 10))
+        });
+      }
+    }).as('getChairById');
 
     cy.intercept('PATCH', new RegExp(`^${chairApiUrl}/\\d+$`), (req) => {
       const id = req.url.split('/').pop();
@@ -42,7 +51,7 @@ describe('Reservation calculation', () => {
       } else {
         req.reply({ statusCode: 404 });
       }
-    }).as('putChair');
+    }).as('patchChair');
 
     cy.visit('/reservation');
   });
@@ -93,9 +102,9 @@ describe('Reservation calculation', () => {
     });
 
     cy.get('[data-cy="submit-reservation"]').click();
-
-    cy.wait('@putChair');
-    cy.wait('@putChair');
+    
+    cy.wait('@patchChair');
+    cy.wait('@patchChair');
 
     cy.get('@alert').should('have.been.calledWith', 'Rezerwacja zakończona sukcesem!');
 

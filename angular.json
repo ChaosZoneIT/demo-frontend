@@ -104,6 +104,9 @@
             },
             "dynamic-config": {
               "buildTarget": "frontend:build:dynamic-config"
+            },
+            "e2e": {
+              "buildTarget": "frontend:build:e2e"
             }
           },
           "defaultConfiguration": "development"

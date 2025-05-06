@@ -9,7 +9,7 @@ export default defineConfig({
       // implement node event listeners here
     },
     env: {
-      chairApiUrl: 'http://localhost:3001/chair'
+      chairApiUrl: 'http://localhost:3099'
     }
   },
 });

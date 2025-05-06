@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:e2e": "ng serve --configuration=e2e",
     "start:local-dev": "ng serve --configuration=local-dev",
     "start:json-server": "json-server --watch db.json --port 3000",
     "build": "ng build --configuration production",
@@ -12,7 +13,8 @@
     "test": "jest",
     "test:unit": "jest --testNamePattern='^\\[unit\\]' --coverage",
     "test:integration": "jest --testNamePattern='^\\[integration\\]' --coverage",
-    "test:e2e": "cypress run",
+    "test:cypress:run": "cypress run",
+    "test:e2e:ci": "start-server-and-test start:e2e http://localhost:4200 test:cypress:run",
     "test:e2e:local": "cypress open",
     "test:security": "snyk test",
     "lint": "eslint . --ext .ts,.html",
@@ -56,6 +58,7 @@
     "json-server": "^1.0.0-beta.3",
     "prettier": "^3.5.3",
     "snyk": "^1.1296.2",
+    "start-server-and-test": "^2.0.11",
     "ts-jest": "^29.3.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "8.27.0"
