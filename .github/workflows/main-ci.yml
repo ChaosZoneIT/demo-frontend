@@ -3,7 +3,7 @@ name: CI for main branch
 on:
   push:
     branches:
-     - '**'
+      - '**'
 #   push:
 #     branches:
 #       - main
