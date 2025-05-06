@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 
 /public/config.json
+/doc/*

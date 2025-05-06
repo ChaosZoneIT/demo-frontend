@@ -1,4 +1,4 @@
-name: z Build Application
+name: Build Application
 
 on:
   workflow_call:

@@ -1,4 +1,4 @@
-name: z Run Unit and Integration Tests with Coverage
+name: Run Unit and Integration Tests with Coverage
 
 on:
   workflow_call:
@@ -20,12 +20,15 @@ jobs:
 
       - name: Run unit tests
         run: npm run test:unit
-        continue-on-error: true
+
+      - name: Check if the file exists
+        run: |
+          ls -l ./coverage/lcov-report/
 
       - name: Upload coverage report as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: code-coverage-report
+          name: code-coverage-report-unit
           path: ./coverage/lcov-report/index.html
 
   integration-test:
@@ -47,7 +50,7 @@ jobs:
         continue-on-error: true
     
       - name: Upload coverage report as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: code-coverage-report
+          name: code-coverage-report-integration
           path: ./coverage/lcov-report/index.html
