@@ -1,0 +1,14 @@
+name: CI for feature branches
+
+on:
+  push:
+    branches:
+        - '**'
+
+jobs:
+  static-code-analysis:
+    uses: ./.github/workflows/lint-format-typecheck.yml
+
+  tests:
+    uses: ./.github/workflows/test.yml
+    needs: static-code-analysis

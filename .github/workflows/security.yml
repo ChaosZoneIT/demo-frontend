@@ -1,12 +1,7 @@
 name: Security Checks
 
 on:
-  push:
-    branches:
-      - '**'
-  pull_request:
-    branches:
-      - main
+  workflow_call:
 
 jobs:
   synk:
