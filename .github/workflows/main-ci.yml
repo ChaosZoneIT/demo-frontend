@@ -28,5 +28,5 @@ jobs:
     needs: security
 
   e2e-tests:
-    uses: ./.github/workflows/e2e.yml
+    uses: ./.github/workflows/e2e-tests.yml
     needs: build
