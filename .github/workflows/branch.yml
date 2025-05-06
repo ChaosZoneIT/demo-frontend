@@ -2,12 +2,12 @@ name: CI for feature branches
 
 on:
   push:
-    branches:
-     - '**'
-#   push:
-#     branches-ignore:
-#       - main
-#       - 'release/**'
+    branches-ignore:
+      - main
+      - 'release/**'
+  # push:
+  #   branches:
+  #     - '**'
 
 jobs:
   static-code-analysis:

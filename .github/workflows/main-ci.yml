@@ -3,13 +3,13 @@ name: CI for main branch
 on:
   push:
     branches:
-      - '**'
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     branches:
-#       - main
+      - main
+  pull_request:
+    branches:
+      - main
+  # push:
+  #   branches:
+  #     - '**'
 
 jobs:
   static-code-analysis:
